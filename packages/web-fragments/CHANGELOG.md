@@ -1,5 +1,15 @@
 # web-fragments
 
+## 0.0.9
+
+### Patch Changes
+
+- b74969b: fix: remove unnecessary `qinit` dispatching from `fragment-outlet`
+- Updated dependencies [45df910]
+- Updated dependencies [af60115]
+- Updated dependencies [af0e8b2]
+  - reframed@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes
