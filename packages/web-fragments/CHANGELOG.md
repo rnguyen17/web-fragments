@@ -1,5 +1,16 @@
 # web-fragments
 
+## 0.0.14
+
+### Patch Changes
+
+- 07e8618: [gateway] The `cloudflare-pages` middleware now includes the `fragment-id` on the `<fragment-host>` when server-rendering a fragment
+- 07e8618: [elements] `<fragment-host>`s now only pierce into `<fragment-outlet>`s that have a matching `fragment-id`
+- 07e8618: [elements] `A <fragment-outlet>` now gets pierced by only one `<fragment-host>`
+- Updated dependencies [14a68ea]
+- Updated dependencies [699b108]
+  - reframed@0.1.0
+
 ## 0.0.13
 
 ### Patch Changes
