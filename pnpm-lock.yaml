@@ -395,7 +395,7 @@ importers:
   packages/web-fragments:
     dependencies:
       htmlrewriter:
-        specifier: anfibiacreativa/htmlrewriter#fix-emoji-crash
+        specifier: github:anfibiacreativa/htmlrewriter#fix-emoji-crash
         version: https://codeload.github.com/anfibiacreativa/htmlrewriter/tar.gz/e234d7a1c7b86e10ee1e8f271afca42058daef42
       writable-dom:
         specifier: github:web-fragments/writable-dom#build-improvements
