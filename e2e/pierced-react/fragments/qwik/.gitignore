@@ -1,6 +1,0 @@
-# Cloudflare
-functions/**/*.js
-
-tmp
-server
-.wrangler

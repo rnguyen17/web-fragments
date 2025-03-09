@@ -1,56 +1,98 @@
 {
-	"name": "web-fragments-monorepo",
-	"version": "0.0.0",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"build": "pnpm --filter reframed --filter web-fragments build",
-		"prettier": "prettier . --ignore-unknown",
-		"types:check": "pnpm --filter '*' types:check",
-		"prettier:check": "pnpm run prettier --check",
-		"prettier:fix": "pnpm run prettier --write",
-		"release": "pnpm build && pnpm changeset publish"
-	},
-	"devDependencies": {
-		"prettier": "^3.2.5",
-		"@changesets/changelog-github": "^0.5.0",
-		"@changesets/cli": "^2.27.7"
-	},
-	"engines": {
-		"pnpm": ">=9",
-		"node": ">=22"
-	},
-	"engineStrict": true,
-	"license": "MIT",
-	"author": "Igor Minar <i@igor.dev> (https://igor.dev)",
-	"contributors": [
-		{
-			"name": "Pete Bacon Darwin",
-			"email": "pete@bacondarwin.com",
-			"url": "https://github.com/petebacondarwin"
-		},
-		{
-			"name": "Cina Saffary",
-			"email": "itscina@gmail.com",
-			"url": "https://github.com/1000hz"
-		},
-		{
-			"name": "Richard Nguyen",
-			"url": "https://github.com/rnguyen17"
-		},
-		{
-			"name": "James Culveyhouse",
-			"email": "jculveyhouse@gmail.com",
-			"url": "https://github.com/jculvey"
-		},
-		{
-			"name": "Dario Piotrowicz",
-			"email": "dario.piotrowicz@gmail.com",
-			"url": "https://github.com/dario-piotrowicz"
-		},
-		{
-			"name": "Natalia Venditto",
-			"url": "https://github.com/anfibiacreativa"
-		}
-	]
+  "name": "web-fragments",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/elements.js",
+      "types": "./dist/elements/index.d.ts"
+    },
+    "./gateway": {
+      "import": "./dist/gateway.js",
+      "types": "./dist/gateway/index.d.ts"
+    },
+    "./gateway/node": {
+      "import": "./dist/gateway/node.js",
+      "types": "./dist/gateway/middleware/node.d.ts"
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./dist/elements.js",
+        "types": "./dist/elements/index.d.ts"
+      },
+      "./gateway": {
+        "import": "./dist/gateway.js",
+        "types": "./dist/gateway/index.d.ts"
+      },
+      "./gateway/node": {
+        "import": "./dist/gateway/node.js",
+        "types": "./dist/gateway/middleware/node.d.ts"
+      }
+    }
+  },
+  "version": "0.4.1",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "dev:playground": "pnpm -C test/playground dev",
+    "preview:playground": "pnpm -C test/playground preview",
+    "build": "pnpm types && vite build",
+    "types:elements": "tsc -p src/elements",
+    "types:gateway": "tsc -p src/gateway",
+    "types:root": "tsc -p .",
+    "types:check": "pnpm types --noEmit --emitDeclarationOnly false",
+    "types": "pnpm run --filter web-fragments --parallel \"/^types:(?!check).*/\"",
+    "test:unit": "pnpm vitest run src",
+    "test:gateway": "pnpm -C test/gateway test",
+    "test:playground": "pnpm -C test/playground test",
+    "test-debug:gateway": "vitest test/gateway --test-timeout=0 --no-file-parallelism",
+    "changeset": "pnpm -C ../../ exec changeset"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "path-to-regexp": "^6.2.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "author": "Igor Minar<i@igor.dev>",
+  "contributors": [
+    {
+      "name": "Pete Bacon Darwin",
+      "email": "pete@bacondarwin.com",
+      "url": "https://github.com/petebacondarwin"
+    },
+    {
+      "name": "Cina Saffary",
+      "email": "itscina@gmail.com",
+      "url": "https://github.com/1000hz"
+    },
+    {
+      "name": "Richard Nguyen",
+      "url": "https://github.com/rnguyen17"
+    },
+    {
+      "name": "James Culveyhouse",
+      "email": "jculveyhouse@gmail.com",
+      "url": "https://github.com/jculvey"
+    },
+    {
+      "name": "Dario Piotrowicz",
+      "email": "dario.piotrowicz@gmail.com",
+      "url": "https://github.com/dario-piotrowicz"
+    },
+    {
+      "name": "Natalia Venditto",
+      "url": "https://github.com/anfibiacreativa"
+    }
+  ],
+  "dependencies": {
+    "htmlrewriter": "github:rnguyen17/htmlrewriter#patch/remove-declaration-files",
+    "writable-dom": "1.0.3"
+  }
 }
